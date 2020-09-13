@@ -1,6 +1,6 @@
 ---
- title: Confidential Computing Nodes on AKS (public preview)
- description: Azure Kubernetes Service Confidential Computing DC SKU
+ title: Confidential Computing Nodes on Azure Kubernetes Service (AKS) public preview
+ description: Confidential Computing nodes on AKS
  services: virtual-machines
  author: agowdamsft
  ms.service: virtual-machines
@@ -15,24 +15,18 @@
 Azure confidential computing allows you to protect your sensitive data while it's in use from other applications, administrators and providers. AKS supports creation of DCSv2 confidential computing nodes to run the sensitive workloads within a hardware based Trusted Execution Environment (TEE). The confidential worker nodes leverage Intel SGX to create isolated execution environment between each containers that directly happens from the application  to the CPU leverage by leveraging the special instruction sets that are made available through the SGX capability. For more information on available SGX enabled confidential computing VMs, [https://docs.microsoft.com/en-us/azure/virtual-machines/dcv2-series](see DCSv2 VM sizes in Azure).
 
 
-![The confidential container conversation](./media/sgxaksnode.jpg)
+![The confidential container conversation](./media/aks/sgxaksnode.jpg)
 
 ## Features
 
+1. Hardware based and process level container isolation through SGX trusted execution environment (TEE) 
 1. Heterogenous node pool clusters (mix confidential node pools with non-confidential node pools)
-
 1. Encrypted Page Cache (EPC) memory based pod scheduling
-
 1. SGX DCAP driver pre-installed
-
 1. Intel FSGS Patch pre-installed
-
 1. CPU consumption based horizontal pod scaling and cluster auto-scaling
-
 1. Intel Platform Software management daemon sets to help ith attestation needs
-
 1. Linux Containers support on a Gen 2 Ubuntu 18.04 worker nodes
-
 1. Supports currently GA'ed regions of DCSv2  
 
 ### Container Isolation
