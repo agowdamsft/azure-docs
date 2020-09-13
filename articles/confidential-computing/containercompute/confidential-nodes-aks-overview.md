@@ -8,6 +8,7 @@
  ms.topic: overview
  ms.date: 9/14/2020
  ms.author: agowdamsft
+ ms.author: agowdamsft
 ---
 
 # Confidential Computing nodes on Azure Kubernetes Service (public preview)
@@ -104,3 +105,10 @@ You can [read more](virtual-machine-solutions.md) about deploying Azure confiden
 [Quick starter samples](https://github.com/Azure-Samples)
 
 [DCsv2 SKU List](https://docs.microsoft.com/en-us/azure/virtual-machines/dcv2-series)
+
+<!-- LINKS - external -->
+[Azure Attestation]: https://docs.microsoft.com/en-us/azure/attestation/
+
+
+<!-- LINKS - internal -->
+[DC Virtual Machine]: /confidential-computing/virtual-machine-solutions

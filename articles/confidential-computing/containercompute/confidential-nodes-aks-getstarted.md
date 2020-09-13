@@ -4,6 +4,7 @@ description: Learn to create an AKS cluster with confidential nodes and deploy a
 services: confidential-computing
 ms.topic: quickstart
 ms.date: 9/5/2020
+ ms.author: agowdamsft
 
 
 #Customer intent: As a developer or cluster operator, I want to quickly create an AKS cluster and deploy an application so that I can see how to run and monitor applications using the managed Kubernetes service in Azure.

@@ -12,42 +12,90 @@
 
 # Confidential Containers
 
-The term “confidential containers” refers to docker application (new or existing) containers packaged with additional components if necessary to run on the hardware that provides strong protections of Confidential Computing as listed above and meets the below list of criteria to improve the overall security posture of the container application and the data-in-use.  
+Enabled developers to bring an existing docker application (new or existing) applications and run it securely on AKS through confidential computing nodes support.
+
+Executions of confidential container application in secure enclaves provide:
 
 1. data integrity 
-2. data confidentiality
-3. code integrity
-4. hardware-based assurances
-5. hardware root of trust
-6. software code transparency of the supporting abstraction layer
+1. data confidentiality
+1. code integrity
+1. container code protection
+1. hardware-based assurances
+1. create hardware root of trust
 
-In the context of confidential containers, a hardware-based TEE is an important component that is used to provide strong assurances of data integrity, data confidentiality, and code integrity through measurement of TCB components. These attributes provide assurances to the application developers, security officers and the parties monitoring the confidentiality of the container that application code is not tampered with after the container image is signed, and is not vulnerable to unauthorized modification at run-time. This isolated and measured execution also from the hardware and software layers elevates the security posture and integrity of the container application and its computations to its expected outcomes.
+A hardware based Trusted Execution Environment (TEE) is an important component that is used to provide strong assurances through hardware and software measurements from Trusted computing case(TCB) components. Verifications of these measurement help with validation of the expected computation and verify any tampering of the container apps.
 
-Confidential containers allows bringing an existing container applications and running them in teh secured enclaves with no modifications to the applications. Applications that are programmed with Python, Java, Node etc.. or even off the shelf application like NGinx, Redis Cache etc.. 
+Confidential containers support customer applications developed with Python, Java, Node JS so on or packaged software applications like NGINX, Redis Cache, MemCache so on to be run unmodified on AKS.
 
-![The confidential container converstion](./media/confcondeployprocess.jpg)
+Confidential containers are the fastest path to container confidentiality including the container protection through encryption, enabling lift and shift with no/minimal changes to your business logic.
+
+![The confidential container conversion](./media/aks/confcondeployprocess.jpg)
+
 
 ## Confidential Container Enablers
 
-To run existing docker container application an abstraction layer or SGX software is required. This is enabled and fully supported for AKS orchestrations through Azure Partners and Open Source Software projects
+To run an existing docker container application an abstraction layer or SGX software is required. The software enables the functionality for the container application to directly execute the process to CPU thus removing the middle execution layers.
+
+Confidential containers are fully supported on AKS and enabled through Azure Partners and Open Source Software (OSS) projects. Developers can choose software providers based on the features.
 
 ### Partner Enablers
-#### Scone
 
+![Scontain Logo](./media/aks/scone-logo-small.png)
 
-https://azuremarketplace.microsoft.com/en-us/marketplace/apps/scontainug1595751515785.scone?tab=Overview
+Scone Confidential Cloud Native Computing solutions provide protect the security - confidentiality, integrity, and freshness - of the data, code, and keys with an integrated solution. Scone supports various languages runtime for both Glibc and musl based Linux distros. Scone also supports common container packaged software solutions.
 
-https://sconedocs.github.io/aks/
+Get started with a free community version [here]( 
+https://azuremarketplace.microsoft.com/en-us/marketplace/apps/scontainug1595751515785.scone?tab=Overview)
+
+Scone deployments on confidential computing nodes with AKS are fully supported and integrated. Get started with a sample application here https://sconedocs.github.io/aks/
 
 #### Fortanix
+![Fortanix Logo](./media/aks/fortanixlogo.png)
+
+Fortanix provides Enclave Development Platform (EDP) that allows brining existing Docker container application and orchestrate it successfully on AKS. 
+
+Product is supported on AKS in beta release. Read more here https://www.fortanix.com/products/runtime-encryption/edp/
 
 #### Anjuna
+![Anjuna Logo](./media/aks/anjunalogo.png)
+
+Support coming soon. 
 
 ### OSS Enablers 
 
 #### Graphene
+![Graphene Logo](./media/aks/graphenelogo.png)
+
+Graphene is a lightweight guest OS, designed to run a single Linux application with minimal host requirements. Graphene can run applications in an isolated environment with benefits comparable to running a complete OS and has good tooling support for converting existing docker container application to Graphene Shielded Containers (GSC).
+
+Get started with a sample application and deployment on AKS [here](https://github.com/oscarlab/graphene/tree/master/Documentation)
 
 #### Occlum
+![Occlum Logo](./media/aks/occlumlogo.png)
 
-### Get In Touch
-> Have questions with your implementation or want to become an enabler? please reach out to confcontainers@microsoft.com
+Occlum is a memory-safe, multi-process library OS (LibOS) for Intel SGX. It enables legacy applications to run on SGX with little to no modifications to source code. Occlum transparently protects the confidentiality of user workloads while allowing an easy lift and shift to existing docker applications.
+
+Occlum supports AKS deployments. Follow the deployment instructions with various sample apps [here](https://github.com/occlum/occlum/blob/master/docs/azure_aks_deployment_guide.md)
+
+#### Confidential Inferencing ONNX Runtime
+Open source enclave-based ONNX runtime establishes a secure channel between the client and the inference service - ensuring the neither the request nor the response can leave the secure enclave. 
+
+This solution allows you to bring existing ML trained model and run them confidentially while providing trust between the client and server through attestation and verifications. 
+
+Get started with ML model lift and shift to ONNX runtime [here](https://aka.ms/confidentialinference)
+
+## Confidential Containers Demo
+View the confidential healthcare demo with confidential containers. 
+
+> [!VIDEO https://www.youtube.com/embed/rT6zMOoLEqI]
+
+
+## Get In Touch
+> Have questions with your implementation or want to become an enabler? please reach out to acconaks@microsoft.com
+
+<!-- LINKS - external -->
+[Azure Attestation]: https://docs.microsoft.com/en-us/azure/attestation/
+
+
+<!-- LINKS - internal -->
+[DC Virtual Machine]: /confidential-computing/virtual-machine-solutions

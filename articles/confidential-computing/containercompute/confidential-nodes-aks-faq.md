@@ -3,7 +3,7 @@ title: Frequently asked questions for Confidential Nodes Support on Azure Kubern
 description: Find answers to some of the common questions about AKS & Azure Confidential Computing (ACC) Nodes Support.
 ms.topic: conceptual
 ms.date: 09/05/2020
-
+ms.author: agowdamsft
 ---
 
 # Frequently asked questions about Confidential Computing Nodes on Azure Kubernetes Service (AKS)
