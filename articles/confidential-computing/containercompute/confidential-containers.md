@@ -52,9 +52,9 @@ Scone deployments on confidential computing nodes with AKS are fully supported a
 #### Fortanix
 ![Fortanix Logo](./media/aks/fortanixlogo.png)
 
-Fortanix provides Enclave Development Platform (EDP) that allows brining existing Docker container application and orchestrate it successfully on AKS. 
+With Fortanix users can easily change your existing containerized applications to Confidential Containers with a click of a button without any application modifications or recompilation.  You can use Enclave Manager SaaS portal or our REST APIs to create Confidential Containers. Following user guide has detail instructions on creating a Confidential Container image for a containerized application using Fortanix Enclave Manager portal. [Get started](https://support.fortanix.com/hc/en-us/sections/360008910732-Quickstart) with quick deployment guide and standard docker container to [confidential container conversion](https://support.fortanix.com/hc/en-us/articles/360043529411-User-s-Guide-Create-an-Image).
 
-Product is supported on AKS in beta release. Read more here https://www.fortanix.com/products/runtime-encryption/edp/
+![Fortanix Deployment Process](./media/aks/fortanixconfidentialcontainersflow.png)
 
 #### Anjuna
 ![Anjuna Logo](./media/aks/anjunalogo.png)
@@ -68,7 +68,7 @@ Support coming soon.
 
 Graphene is a lightweight guest OS, designed to run a single Linux application with minimal host requirements. Graphene can run applications in an isolated environment with benefits comparable to running a complete OS and has good tooling support for converting existing docker container application to Graphene Shielded Containers (GSC).
 
-Get started with a sample application and deployment on AKS [here](https://github.com/oscarlab/graphene/tree/master/Documentation)
+Get started with a sample application and deployment on AKS [here](https://graphene.readthedocs.io/en/latest/cloud-deployment.html#azure-kubernetes-service-aks)
 
 #### Occlum
 ![Occlum Logo](./media/aks/occlumlogo.png)
