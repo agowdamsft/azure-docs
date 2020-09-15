@@ -27,7 +27,7 @@ A hardware based Trusted Execution Environment (TEE) is an important component t
 
 Confidential containers support customer applications developed with Python, Java, Node JS so on or packaged software applications like NGINX, Redis Cache, MemCache so on to be run unmodified on AKS.
 
-Confidential containers are the fastest path to container confidentiality including the container protection through encryption, enabling lift and shift with no/minimal changes to your business logic.
+Confidential containers are the fastest path to hardware based container confidentiality and aligned to cloud agnostic deployments. Confidential containers protected the code in the container through encryption while enabling fastest path to confidentiality with no/minimal changes to your business logic.
 
 ![The confidential container conversion](./media/aks/confcondeployprocess.jpg)
 
@@ -40,40 +40,41 @@ Confidential containers are fully supported on AKS and enabled through Azure Par
 
 ### Partner Enablers
 
-![Scontain Logo](./media/aks/scone-logo-small.png)
+#### SCONE
 
-Scone Confidential Cloud Native Computing solutions provide protect the security - confidentiality, integrity, and freshness - of the data, code, and keys with an integrated solution. Scone supports various languages runtime for both Glibc and musl based Linux distros. Scone also supports common container packaged software solutions.
+[SCONE](https://scontain.com/index.html?lang=en) supports security policies that can generate certificates, keys and secrets and ensures that these are only visible to attested services of an application.
+In this way, the services of an application automatically attest each other via TLS - without the need to modify the applications nor TLS. This is explained with the help of a simple
+Flask application here: https://sconedocs.github.io/flask_demo/  
 
-Get started with a free community version [here]( 
-https://azuremarketplace.microsoft.com/en-us/marketplace/apps/scontainug1595751515785.scone?tab=Overview)
+SCONE can convert existing binaries into applications that run inside of enclaves without needing to change the application nor to recompile that application. SCONE also protects interpreted languages like Python by encrypting both data files as well as Python code files. With the help of a SCONE security policy one can protects the encrypted files against unauthorized accesses, modifications and rollbacks. How to „sconify" an existing Python application is explained [here](https://sconedocs.github.io/sconify_image/)
+
+![Scontain Flow](./media/aks/sconeworkflow.png)
 
 Scone deployments on confidential computing nodes with AKS are fully supported and integrated. Get started with a sample application here https://sconedocs.github.io/aks/
 
 #### Fortanix
-![Fortanix Logo](./media/aks/fortanixlogo.png)
 
-With Fortanix users can easily change your existing containerized applications to Confidential Containers with a click of a button without any application modifications or recompilation.  You can use Enclave Manager SaaS portal or our REST APIs to create Confidential Containers. Following user guide has detail instructions on creating a Confidential Container image for a containerized application using Fortanix Enclave Manager portal. [Get started](https://support.fortanix.com/hc/en-us/sections/360008910732-Quickstart) with quick deployment guide and standard docker container to [confidential container conversion](https://support.fortanix.com/hc/en-us/articles/360043529411-User-s-Guide-Create-an-Image).
+With [Fortanix](https://www.fortanix.com/) users can easily change your existing containerized applications to Confidential Containers with a click of a button without any application modifications or recompilation.  You can use Enclave Manager SaaS portal or our REST APIs to create Confidential Containers. Following user guide has detail instructions on creating a Confidential Container image for a containerized application using Fortanix Enclave Manager portal. [Get started](https://support.fortanix.com/hc/en-us/sections/360008910732-Quickstart) with quick deployment guide and standard docker container to [confidential container conversion](https://support.fortanix.com/hc/en-us/articles/360043529411-User-s-Guide-Create-an-Image).
 
 ![Fortanix Deployment Process](./media/aks/fortanixconfidentialcontainersflow.png)
 
 #### Anjuna
-![Anjuna Logo](./media/aks/anjunalogo.png)
 
-Support coming soon. 
+[Anjuna](https://www.anjuna.io/) provides SGX platform software that enables you to run unmodified containers on AKS. Read more on the functionality and the user flow [here](https://www.anjuna.io/microsoft-azure-confidential-computing-aks-lp).
+
+Get started with a sample Redis Cache and Python Custom Application [here](https://www.anjuna.io/microsoft-azure-confidential-computing-aks-lp)
 
 ### OSS Enablers 
 
 #### Graphene
-![Graphene Logo](./media/aks/graphenelogo.png)
 
-Graphene is a lightweight guest OS, designed to run a single Linux application with minimal host requirements. Graphene can run applications in an isolated environment with benefits comparable to running a complete OS and has good tooling support for converting existing docker container application to Graphene Shielded Containers (GSC).
+[Graphene](https://grapheneproject.io/) is a lightweight guest OS, designed to run a single Linux application with minimal host requirements. Graphene can run applications in an isolated environment with benefits comparable to running a complete OS and has good tooling support for converting existing docker container application to Graphene Shielded Containers (GSC).
 
 Get started with a sample application and deployment on AKS [here](https://graphene.readthedocs.io/en/latest/cloud-deployment.html#azure-kubernetes-service-aks)
 
 #### Occlum
-![Occlum Logo](./media/aks/occlumlogo.png)
 
-Occlum is a memory-safe, multi-process library OS (LibOS) for Intel SGX. It enables legacy applications to run on SGX with little to no modifications to source code. Occlum transparently protects the confidentiality of user workloads while allowing an easy lift and shift to existing docker applications.
+[Occlum](https://occlum.io/) is a memory-safe, multi-process library OS (LibOS) for Intel SGX. It enables legacy applications to run on SGX with little to no modifications to source code. Occlum transparently protects the confidentiality of user workloads while allowing an easy lift and shift to existing docker applications.
 
 Occlum supports AKS deployments. Follow the deployment instructions with various sample apps [here](https://github.com/occlum/occlum/blob/master/docs/azure_aks_deployment_guide.md)
 
