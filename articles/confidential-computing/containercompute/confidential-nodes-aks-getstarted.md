@@ -32,11 +32,49 @@ Confidential computing nodes on AKS supports:
 1. You have the Azure CLI version 2.0.64 or later installed and configured (Run `az --version` to find the version. If you need to install or upgrade, see [Install Azure CLI][install-azure-cli])
 1. Pre-installed Intel SGX DCAP Driver. Read more [here](https://docs.microsoft.com/en-us/azure/confidential-computing/faq)
 1. Have a minimum of six DCSv2 cores available in your subscription for use
+1. Provisioning only through CLI during preview
 
+
+## Installing the CLI pre-requisites
+
+1. The Azure CLI, version 2.8.0 or later installed
+1. The aks-preview extension version 0.4.53 or later
+1. The Gen2VMPreview feature flag registered
+1. The ConfCom feature flag registered
+
+To install the aks-preview 0.4.62 extension or later, use the following Azure CLI commands:
+
+```azurecli-interactive
+az extension add --name aks-preview
+az extension list
+```
+To update the aks-preview CLI extension, use the following Azure CLI commands:
+
+```azurecli-interactive
+az extension update --name aks-preview
+```
+
+Register the Gen2VMPreview and ConfCom features:
+
+```azurecli-interactive
+az feature register --name Gen2VMPreview --namespace Microsoft.ContainerService
+az feature register --name ConfCom --namespace Microsoft.ContainerService
+```
+It might take several minutes for the status to show as Registered. You can check the registration status by using the 'az feature list' command:
+
+```azurecli-interactive
+az feature list -o table --query "[?contains(name, 'Microsoft.ContainerService/Gen2VMPreview')].{Name:name,State:properties.state}"
+az feature list -o table --query "[?contains(name, 'Microsoft.ContainerService/ConfCom')].{Name:name,State:properties.state}"
+```
+When the status shows as registered, refresh the registration of the Microsoft.ContainerService resource provider by using the 'az provider register' command:
+
+```azurecli-interactive
+az provider register --namespace Microsoft.ContainerService
+```
 
 ## Create an AKS cluster
 
-If you already have an AKS cluster that meets the above requirements, [skip to the existing cluster section](#confirm-that-gpus-are-schedulable).
+If you already have an AKS cluster that meets the above requirements, [skip to the existing cluster section](#confirm-that-gpus-are-schedulable) to add a new confidential computing node pool.
 
 First, create a resource group for the cluster using the [az group create][az-group-create] command. The following example creates a resource group name *myResourceGroup* in the *westus2* region:
 
@@ -44,7 +82,7 @@ First, create a resource group for the cluster using the [az group create][az-gr
 az group create --name myResourceGroup --location westus2
 ```
 
-Now create an AKS cluster using the [az aks create][az-aks-create] command. The following example creates a cluster with a single node of size `Standard_NC6`:
+Now create an AKS cluster using the [az aks create][az-aks-create] command. The following example creates a cluster with a single node of size `Standard_DC2s_v2`. You can choose other supported list of DC SKUs from [here](https://docs.microsoft.com/en-us/azure/virtual-machines/dcv2-series):
 
 ```azurecli-interactive
 az aks create \
@@ -55,6 +93,7 @@ az aks create \
     --addon confcom
     --network-plugin azure
     --vm-set-type VirtualMachineScaleSets
+    --aks-custom-headers usegen2vm=true,confcom
 ```
 The above command should provision a new AKS cluster with DCSv2 node pools and automatically install two daemon sets ([SGX Device Plugin](#sgx-plugin) & [SGX Quote Helper](#sgx-quote-helper))
 
@@ -75,7 +114,7 @@ If the output matches to the above, then your AKS cluster is now ready to run co
 
 Go to [Hello World from Enclave](#hello-world-from-enclave) deployment section to test an app in an enclave. Alternatively, follow the below instructions to add additional node pools on AKS (AKS supports mixing SGX node pools and non-SGX node pools)
 
->If the SGX related daemon sets are not installed on your DCSv2 node pools then run the below
+>If the SGX related daemon sets are not installed on your DCSv2 node pools then run the below.
 
 ```azurecli-interactive
 az aks enable-addons --addons confcom --resource-group myResourceGroup --name myAKSCluster
@@ -93,7 +132,7 @@ az aks enable-addons --addons confcom --resource-group myResourceGroup --name my
 Now add a DCSv2 node pool to the cluster
 
 ```azurecli-interactive
-az aks nodepool add --cluster-name myAKSCluster --name confcompool1 --resource-group myResourceGroup --node-count 1 --node-vm-size Standard_DC4s_v2
+az aks nodepool add --cluster-name myAKSCluster --name confcompool1 --resource-group myResourceGroup --node-count 1 --node-vm-size Standard_DC4s_v2 --aks-custom-headers usegen2vm=true,confcom
 
 output node pool added
 
